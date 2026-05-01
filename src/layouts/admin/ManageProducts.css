@@ -1,0 +1,33 @@
+
+/* Table */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.admin-table th {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px;
+    text-align: right;
+}
+
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.btn-edit {
+    background: var(--secondary-color);
+    color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; margin-left: 10px;
+}
+
+.btn-delete {
+    background: var(--warning-color);
+    color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;
+}

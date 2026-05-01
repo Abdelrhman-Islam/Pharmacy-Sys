@@ -1,0 +1,17 @@
+--------------------Project Structure------------------------------
+src/
+├── assets/             # Images, fonts, and icons
+├── components/         # Reusable UI pieces (Button, Card, Navbar)
+├── layouts/            # Layout wrappers + your Global/Layout CSS
+│   ├── MainLayout.jsx
+│   ├── layout.css      # Put your original CSS here
+│   └── theme.css       # Dark mode variables
+├── pages/              # Main views (Home, About, Dashboard)
+├── context/            # For Dark Mode & Language State
+│   ├── ThemeContext.jsx
+│   └── LangContext.jsx
+├── locales/            # Translation files
+│   ├── en.json
+│   └── ar.json
+├── App.jsx
+└── main.jsx

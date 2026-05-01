@@ -1,0 +1,101 @@
+/* Dashboard.css */
+
+:root {
+    --primary-color: #0F7A73;    /* أخضر صيدلي */
+    --secondary-color: #2D9CDB;  /* أزرق هادئ */
+    --warning-color: #EB5757;    /* أحمر للتنبيهات */
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+}
+
+.dashboard-container {
+    padding: 30px;
+    background-color: var(--bg-color);
+    /* min-height: 100vh; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-container h1 {
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.dashboard-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* شبكة الكروت */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* تصميم الكارت */
+.stat-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-right: 5px solid var(--primary-color); /* علامة جانبية شيك */
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.stat-card .number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* كارت التحذير (النواقص) */
+.stat-card.warning {
+    border-right-color: var(--warning-color);
+}
+
+.stat-card.warning .number {
+    color: var(--warning-color);
+}
+
+/* إضافة لمسة انسيابية للـ Cards */
+.stat-card:nth-child(2) {
+    border-right-color: var(--secondary-color);
+}
+.stat-card:nth-child(2) .number {
+    color: var(--secondary-color);
+}
+
+/* متجاوب مع الموبايل */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+

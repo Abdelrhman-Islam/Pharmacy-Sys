@@ -1,0 +1,261 @@
+/* Container الصفحة الرئيسي */
+.page-wrapper {
+  background-color: #f8fafc;
+  direction: rtl;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* تنظيم المحتوى الداخلي */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  max-width: 1300px; /* خليناه ملموم أكتر عشان التناسق */
+  margin: 0 auto;
+  padding: 40px 20px;
+  gap: 30px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* مربع الفلترة (السايدبار) */
+.filter-box {
+  width: 260px;
+  background: #1a837b; 
+  padding: 25px;
+  border-radius: 20px; /* دوران أنعم زي صورتك */
+  position: sticky;
+  top: 100px; /* مسافة من الناف بار */
+  color: white;
+  box-shadow: 0 10px 25px rgba(26, 131, 123, 0.2);
+  flex-shrink: 0;
+}
+
+.filter-box h4 {
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.filter-box li {
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 8px;
+}
+
+.filter-box li.active, .filter-box li:hover {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: bold;
+}
+
+/* منطقة المنتجات */
+.products-main {
+  width: 100%; /* تأكد إن الحاوية واخدة العرض كله */
+  flex: 1;
+}
+
+.section-header h2 {
+  color: #0f766e;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  border-right: 4px solid #1a837b; /* الخط الرأسي اللي في صورتك */
+  padding-right: 15px;
+}
+
+/* شبكة المنتجات (Responsive Grid) */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+/* كارت المنتج */
+.product-card {
+  background: white;
+  border: 1px solid #edf2f7;
+  border-radius: 16px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease-in-out;
+  overflow: hidden; /* بيمنع أي حاجة تطلع بره الكارت */
+  height: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+.product-name {
+  font-size: 1rem;
+  color: #2d3748;
+  font-weight: bold;
+  margin-bottom: 10px;
+  height: 2.4em; /* بيضمن إن الاسم لو سطرين ميبوظش المحاذاة */
+  overflow: hidden;
+}
+.product-image-container {
+  width: 100%;
+  height: 180px; /* ارتفاع ثابت للصورة */
+  margin-bottom: 15px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* بيخلي الصورة تملأ المربع من غير ما تتمط */
+  transition: 0.5s;
+}
+.product-card:hover img {
+  scale: 1.1; /* حركة زوم خفيفة عند الهوفر */
+}
+
+.add-to-cart-btn {
+  background: #f0fdfa;
+  color: #1a837b;
+  border: 1px solid #1a837b;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background: #1a837b;
+  color: white;
+}
+.product-price {
+  color: #1a837b;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+/* --- Responsive (المهم جداً) --- */
+
+/* للشاشات المتوسطة (Tablets) */
+@media (max-width: 1024px) {
+  .main-content {
+    gap: 20px;
+  }
+  .filter-box {
+    width: 220px;
+  }
+}
+
+/* للموبايل (تحت 768px) */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column; /* المربع يطلع فوق والمنتجات تحت */
+    padding: 20px;
+  }
+  .filter-box {
+    width: 100%;
+    position: static; /* بنلغي الـ sticky في الموبايل */
+    margin-bottom: 20px;
+  }
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* كارتين جنب بعض في الموبايل */
+    gap: 15px;
+  }
+}
+
+
+/* --- التعديلات الخاصة بالموبايل والتابلت --- */
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column; /* المربع والمنتجات تحت بعض */
+    padding: 15px;
+    gap: 20px;
+  }
+
+  /* تحويل مربع الفلترة لشريط عرضي شيك */
+  .filter-box {
+    width: 100%;
+    position: relative; /* بنلغي الـ sticky عشان مساحة الشاشة */
+    top: 0;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .filter-box h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-bottom: none;
+  }
+
+  /* جعل القائمة تمشي بالعرض Scrollable */
+  .filter-box ul {
+    display: flex;
+    overflow-x: auto; /* سكرول بالعرض */
+    gap: 10px;
+    padding-bottom: 5px;
+    scrollbar-width: none; /* إخفاء السكرول بار في فايرفوكس */
+  }
+
+  .filter-box ul::-webkit-scrollbar {
+    display: none; /* إخفاء السكرول بار في كروم */
+  }
+
+  .filter-box li {
+    white-space: nowrap; /* منع الكلام إنه ينزل سطر جديد */
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+
+  /* تظبيط شبكة المنتجات */
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* كارتين جنب بعض في الموبايل */
+    gap: 15px;
+  }
+
+  /* تصغير حجم الكارت شوية للموبايل */
+  .product-card {
+    padding: 10px;
+    min-height: 320px;
+  }
+
+  .product-image-container {
+    height: 140px; /* تصغير الصورة عشان تبان كلها */
+  }
+
+  .product-name {
+    font-size: 0.9rem;
+  }
+
+  .product-price {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .add-to-cart-btn {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+}
+
+/* تظبيط خاص للشاشات الصغيرة جداً (مثل 320px في صورتك) */
+@media (max-width: 400px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* كارت واحد كبير عشان الوضوح */
+  }
+  
+  .product-image-container {
+    height: 200px; /* نكبر الصورة تاني بما إن الكارت بقى واخد العرض كله */
+  }
+}

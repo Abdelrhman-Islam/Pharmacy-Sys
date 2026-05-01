@@ -1,0 +1,279 @@
+/* Admin.css */
+:root {
+    --primary: #1a837b;
+    --bg-light: #f8fafb;
+    --text-gray: #7d8da1;
+}
+
+/* الطبقة الكبيرة */
+.admin-layout {
+    display: flex;
+    background-color: #f8fafb;
+    min-height: 100vh;
+}
+
+/* السايدبار ثابت على اليمين */
+.sidebar {
+    width: 280px;
+    background-color: #1a837b;
+    height: 100vh;
+    position: fixed;
+    right: 0; top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 15px;
+    z-index: 1000;
+}
+
+/* المحتوى لازم ياخد مارجن يمين عشان ميبقاش تحت السايدبار */
+.main-wrapper {
+    flex: 1;
+    margin-right: 280px; 
+    padding: 20px;
+}
+
+/* ستايل الكروت */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px); /* حركة صياعة لما يوقف بالماوس */
+}
+
+.stat-icon {
+    width: 50px; height: 50px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+}
+
+/* ألوان الأيقونات زي الصورة */
+.purple { background: #f3e8ff; color: #7e22ce; }
+.blue { background: #e0f2fe; color: #0369a1; }
+.red { background: #fee2e2; color: #dc2626; }
+
+/* ستايل اللوجو والـ nav-item */
+.logo-container { color: white; display: flex; justify-content: space-between; align-items: center; font-size: 22px; font-weight: bold; margin-bottom: 40px; }
+.logo-icon { background: white; color: #1a837b; width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+
+.nav-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 15px; color: rgba(255,255,255,0.7); text-decoration: none; border-radius: 10px; margin-bottom: 5px;
+}
+.nav-item.active { background: rgba(0,0,0,0.15); color: white; }
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* عشان الترحيب يبقى فوق والبحث جنبه */
+    padding: 30px 40px;
+    margin-bottom: 10px;
+}
+
+.user-greet h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.user-greet p {
+    color: #7d8da1;
+    font-size: 14px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid #eee;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    direction: rtl;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: #1a837b;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column; /* ترتيب رأسي */
+    z-index: 1000;
+    color: white;
+}
+
+/* اللوجو فوق خالص */
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    direction: rtl;
+}
+
+/* اللينكات في النص - هنديها flex-grow عشان تزق اللي تحتها */
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1; 
+    direction: rtl;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.nav-item.active {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+/* زرار الخروج تحت خالص */
+.logout-section {
+    margin-top: auto; /* السر هنا عشان ينزل تحت */
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    direction: rtl;
+}
+
+.logout-link {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.main-wrapper {
+    margin-right: 280px; /* لازم نفس عرض السايدبار بالضبط */
+    flex: 1;
+    padding: 40px;
+    background-color: #f8fafb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* مسافة بين الهيدر والكروت */
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: rtl;
+}
+
+.search-container {
+    background: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 كروت في الصف */
+    gap: 25px;
+    direction: rtl;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    border-right: 4px solid transparent; /* عشان الحركة اللي في الصورة */
+}
+
+/* التمييز بالألوان زي ما إنت عاملها في الصورة */
+.stat-card.medicine { border-right-color: #7e22ce; }
+.stat-card.users { border-right-color: #0369a1; }
+.stat-card.warning { border-right-color: #dc2626; }
+
+
+/* Container للجزء السفلي */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* الطلبات تأخذ مساحة أكبر */
+    gap: 25px;
+    padding: 0 40px 40px;
+}
+
+.table-container, .top-products {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+/* ستايل الحالة (Status Badge) */
+.badge {
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+.badge.success { background: #dcfce7; color: #166534; } /* مكتمل */
+.badge.warning { background: #fef9c3; color: #854d0e; } /* جديد */
+.badge.info { background: #e0f2fe; color: #075985; }    /* قيد التوصيل */
+
+.sidebar {
+    width: 280px;
+    background-color: #1a837b;
+    height: 100vh;
+    position: fixed; /* يفضل ثابت وأنت بتعمل سكرول */
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    z-index: 1000;
+}
+
+.main-wrapper {
+    margin-right: 280px; /* لازم المارجن يكون نفس عرض السايدبار */
+    flex: 1;
+    min-height: 100vh;
+}

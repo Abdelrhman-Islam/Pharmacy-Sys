@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-bg);
+  color: var(--text-main);
+  direction: rtl;
+}
+
+.main-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Buttons System */
+.btn {
+  padding: 12px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary { background: var(--white); color: var(--primary-color); }
+.btn-outline { border: 2px solid var(--white); color: var(--white); background: transparent; }
+.btn-accent { background: var(--accent-color); color: #1e293b; border-radius: 12px; font-weight: 800; }

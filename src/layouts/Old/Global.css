@@ -1,0 +1,41 @@
+:root {
+  /* Main Colors */
+  --primary: #0F7A73;
+  --primary-dark: #0B5E58;
+  --primary-light: #E0F2F1;
+  --accent: #F57C00;
+  --accent-dark: #E65100; /* For hover */
+
+  /* Surface Colors */
+  --background: #F9FAFB;
+  --surface-card: #FFFFFF;
+  
+  /* Text Colors */
+  --text-main: #222222;
+  --text-secondary: #666666;
+
+  /* Status Colors */
+  --success: #4CAF50;
+  --pending: #FFC107;
+  --info: #2196F3;
+  --error: #F44336;
+  --disabled: #9E9E9E;
+}
+
+/* Dark Mode Overrides */
+[data-theme='dark'] {
+  --background: #121212;
+  --surface-card: #1E1E1E;
+  --text-main: #F5F5F5;
+  --text-secondary: #B0B0B0;
+  --primary-light: #1A3D3A; /* Darker variant for backgrounds */
+}
+
+/* Base resets for your HTML/CSS migration */
+body {
+  background-color: var(--background);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif; /* Standard for dashboards */
+  margin: 0;
+  transition: background-color 0.3s ease;
+}
