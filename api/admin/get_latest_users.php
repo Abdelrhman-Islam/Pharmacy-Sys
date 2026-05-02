@@ -13,7 +13,7 @@ try {
     $adminData = confirmAdmin($connection);
 
     // Fetch latest users
-    $sql = "SELECT id, name, email, created_at FROM users WHERE type = 'user' ORDER BY id DESC LIMIT 5";
+    $sql = "SELECT id, name, email, phone, created_at FROM users WHERE type = 'user' ORDER BY id DESC LIMIT 10";
     
     $result = $connection->query($sql);
 
