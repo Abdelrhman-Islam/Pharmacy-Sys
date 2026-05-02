@@ -17,6 +17,7 @@ body {
 .admin-page-container {
     display: flex;
     min-height: 100vh;
+    direction: rtl;
 }
 
 /* Sidebar styling */
@@ -169,3 +170,4 @@ body {
         z-index: 999;
     }
 }
+

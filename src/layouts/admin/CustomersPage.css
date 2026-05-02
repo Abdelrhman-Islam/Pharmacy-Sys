@@ -1,0 +1,58 @@
+.admin-page { padding: 20px; }
+.admin-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.admin-table th {
+    background: #00bfa5;
+    color: white;
+    padding: 15px;
+    text-align: right;
+}
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+.admin-table tr:hover { background: #f9f9f9; }
+
+/* ده في الشاشات الكبيرة (أكبر من 768px) */
+@media screen and (min-width: 768px) {
+    table { display: table; }
+    thead { display: table-header-group; }
+    tbody { display: table-row-group; }
+}
+
+/* ده في الموبايل (أقل من 768px) - السحر بيحصل هنا */
+@media screen and (max-width: 767px) {
+    /* بنخفي الـ Header بتاع الجدول عشان مش هنحتاجه */
+    thead { display: none; }
+
+    /* بنخلي الـ Row ياخد شكل Card */
+    tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 8px;
+        background: #fff;
+    }
+
+    /* بنخلي الخلايا تظهر تحت بعضها */
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* بنضيف Label قبل كل قيمة عشان المستخدم يفهم هو بيقرا إيه */
+    td::before {
+        content: attr(data-label); /* دي هناخدها من الـ HTML */
+        font-weight: bold;
+    }
+}

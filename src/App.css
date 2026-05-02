@@ -1,0 +1,25 @@
+/* الحاوية الكبيرة اللي بتضم السايد بار والمحتوى */
+.admin-layout {
+    display: flex;
+    min-height: 100vh; /* يملأ طول الشاشة */
+    direction: rtl;    /* عشان التصميم عربي */
+    background-color: #f4f7f6;
+}
+
+/* السايد بار */
+.sidebar-container {
+    width: 250px;      /* عرض ثابت */
+    flex-shrink: 0;    /* ده الأهم: عشان السايد بار ميكشش مهما المحتوى كبر */
+    background: #0F7A73; /* لون البراند */
+    color: white;
+    height: 100vh;     /* ثابت في مكانه */
+    position: sticky;  /* عشان يفضل موجود حتى لو الصفحة طولت */
+    top: 0;
+}
+
+/* المحتوى الأساسي */
+.main-content-area {
+    flex-grow: 1;      /* ياخد كل المساحة المتبقية */
+    padding: 20px;
+    overflow-y: auto;  /* لو المحتوى طويل، السكرول يظهر هنا بس مش في الصفحة كلها */
+}

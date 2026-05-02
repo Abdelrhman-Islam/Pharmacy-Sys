@@ -76,14 +76,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="admin-page-container">
-      <button className="mobile-menu-btn" onClick={() => setSidebarOpen(true)}>
-          <i className="fas fa-bars"></i>
-      </button>
-      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-      
-      <main className="admin-main-wrapper">
-        <div className="stats-grid">
+    <>
           <div className="auth-container" dir="rtl">
             <div className="auth-card">
               <h2 style={{ color: '#0F7A73', marginBottom: '25px', textAlign: 'center' }}>إضافة منتج جديد</h2>
@@ -163,9 +156,8 @@ const AddProduct = () => {
               </form>
             </div>
           </div>
-        </div>
-      </main>
-    </div>
+
+    </>
   );
 };
 

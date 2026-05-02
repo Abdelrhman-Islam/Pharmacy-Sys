@@ -14,10 +14,11 @@ import CheckoutPage from './pages/Checkout';
 import CartPage from './pages/Cart';
 import MyOrdersPage from './pages/MyOrdersPage';
 import UploadPrescription from './pages/UploadPrescription';
+import CustomersPage from './pages/admin/CustomersPage';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
-
+import AdminLayout from './layouts/admin/AdminLayout';
 import './layouts/variables.css';
 import './layouts/global.css';
 
@@ -66,20 +67,16 @@ function App() {
 
           {/* Admin Routes */}
           
-          <Route 
-            path="/admin/add-product" 
-            element={
-              <AdminRoute>
-                <AddProduct />
-              </AdminRoute>
-            } 
-          />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
 
-          <Route path="/admin" element={
-            <AdminRoute>
-              <AdminDashboard />
-            </AdminRoute>} 
-          />
+          <Route path="customers" element={<CustomersPage />} />
+          <Route path='add-product' element={<AddProduct />}/>
+        </Route>
+
+
+
+
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
