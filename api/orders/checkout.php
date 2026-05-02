@@ -1,48 +1,62 @@
 <?php
-// Setup CORS and DB
-require_once '../../cors.php';
 require_once __DIR__ . '/../../config/db.php'; 
+require_once __DIR__ . '/../../auth/auth.php'; 
+require_once '../../cors.php';
 
-// Receive JSON input
-$json = file_get_contents("php://input");
-$data = json_decode($json, true);
+header('Content-Type: application/json');
 
-if (!$data) {
-    echo json_encode(["status" => "error", "message" => "Invalid request data"]);
+$user_id = getAuthenticatedUserId($pdo); 
+
+// 1. استقبال البيانات من الـ Postman أو الـ React
+$input = json_decode(file_get_contents('php://input'), true);
+
+$name = $input['name'] ?? '';
+$phone = $input['phone'] ?? '';
+$address = $input['address'] ?? '';
+$city = $input['city'] ?? '';
+
+if (empty($name) || empty($address)) {
+    echo json_encode(["status" => "error", "message" => "بيانات الشحن ناقصة"]);
     exit;
 }
 
-// Start transaction
-$connection->begin_transaction();
-
 try {
-    // 1. Insert order
-    // Temporary user_id
-    $user_id = 1; 
-    $stmt = $connection->prepare("INSERT INTO orders (user_id, total_amount, address, phone, city) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("idsss", $user_id, $data['total'], $data['address'], $data['phone'], $data['city']);
-    $stmt->execute();
-    $order_id = $connection->insert_id;
+    $pdo->beginTransaction();
 
-    // 2. Insert items and update stock
-    foreach ($data['cartItems'] as $item) {
-        // Insert order item
-        $stmt_item = $connection->prepare("INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)");
-        $stmt_item->bind_param("iiid", $order_id, $item['id'], $item['quantity'], $item['price']);
-        $stmt_item->execute();
+    // 1. جلب السلة
+    // 1. جلب السلة (مع عمل JOIN لجدول المنتجات لجلب السعر)
+    $stmt = $pdo->prepare("
+        SELECT c.product_id, c.quantity, p.price 
+        FROM cart c 
+        JOIN products p ON c.product_id = p.id 
+        WHERE c.user_id = ?
+    ");
+    $stmt->execute([$user_id]);
+    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Update stock
-        $stmt_stock = $connection->prepare("UPDATE products SET qty = qty - ? WHERE id = ?");
-        $stmt_stock->bind_param("ii", $item['quantity'], $item['id']);
-        $stmt_stock->execute();
+    if (empty($items)) {
+        throw new Exception("السلة فارغة");
+    }
+    $total_amount = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $items));
+
+    // 2. تعديل الـ Query عشان تشيل بيانات الشحن (تأكد إن الأعمدة موجودة في جدول orders)
+    $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount, name, phone, address, city, status) VALUES (?, ?, ?, ?, ?, ?, 'pending')");
+    $stmt->execute([$user_id, $total_amount, $name, $phone, $address, $city]);
+    $order_id = $pdo->lastInsertId();
+
+    // 3. باقي الكود زي ما هو
+    $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)");
+    foreach ($items as $item) {
+        $stmt->execute([$order_id, $item['product_id'], $item['quantity'], $item['price']]);
     }
 
-    // Commit
-    $connection->commit();
-    echo json_encode(["status" => "success", "message" => "Order placed successfully", "order_id" => $order_id]);
+    $pdo->prepare("DELETE FROM cart WHERE user_id = ?")->execute([$user_id]);
+
+    $pdo->commit();
+    echo json_encode(["status" => "success", "order_id" => $order_id]);
 
 } catch (Exception $e) {
-    // Rollback on error
-    $connection->rollback();
-    echo json_encode(["status" => "error", "message" => "Error: " . $e->getMessage()]);
+    if ($pdo->inTransaction()) $pdo->rollBack();
+    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 }
+

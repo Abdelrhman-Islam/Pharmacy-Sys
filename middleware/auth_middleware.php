@@ -1,12 +1,12 @@
 <?php
 // auth_middleware.php
-require_once 'db.php';
+require_once __DIR__ . '/../config/db.php'; 
 
 function checkAuth($connection) {
     // 1. Extract Headers
     $headers = getallheaders();
-    $token = $headers['Authorization'] ?? '';
-
+    $rawToken = $headers['Authorization'] ?? '';
+    $token = preg_replace('/^Bearer\s+/i', '', $rawToken);
     if (empty($token)) {
         http_response_code(401);
         echo json_encode(["status" => "error", "message" => "Unauthorized access"]);

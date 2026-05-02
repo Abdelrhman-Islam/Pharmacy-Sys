@@ -1,13 +1,18 @@
 <?php
 require_once '../../cors.php';
-require_once __DIR__ . '/../../middleware/admin_middleware.php';
+// 1. استخدم ملف الـ Auth العادي مش بتاع الأدمن
+require_once __DIR__ . '/../../middleware/auth_middleware.php'; 
 require_once __DIR__ . '/../../config/db.php'; 
 
-// Get user data from token
-$user = confirmUser($connection);
-$user_id = $user['id'];
+// 2. استخدم الدالة الصح الموجودة في الملف ده (checkAuth)
+$user_id = checkAuth($connection); 
 
+// 3. كمل الكود بتاعك عادي
 $stmt = $connection->prepare("SELECT name, phone, address, city FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
-echo json_encode($stmt->get_result()->fetch_assoc());
+
+$result = $stmt->get_result()->fetch_assoc();
+
+echo json_encode(["status" => "success", "data" => $result]);
+?>
