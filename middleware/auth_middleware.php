@@ -3,16 +3,17 @@
 require_once 'db.php';
 
 function checkAuth($connection) {
-    // 1. استخراج الـ Headers
+    // 1. Extract Headers
     $headers = getallheaders();
     $token = $headers['Authorization'] ?? '';
 
     if (empty($token)) {
         http_response_code(401);
-        echo json_encode(["status" => "error", "message" => "غير مصرح لك بالدخول"]);
+        echo json_encode(["status" => "error", "message" => "Unauthorized access"]);
         exit;
     }
 
+    // 2. Validate token against database
     $stmt = $connection->prepare("
         SELECT user_id 
         FROM tokens 
@@ -26,12 +27,12 @@ function checkAuth($connection) {
     $result = $stmt->get_result();
 
     if ($user_data = $result->fetch_assoc()) {
-        // التوكن صح وموجود.. رجع الـ user_id عشان تستخدمه في الكويريز اللي جاية
+        // Token is valid, return user_id for further queries
         return $user_data['user_id'];
     } else {
-        // التوكن غلط أو منتهي الصلاحية
+        // Token invalid or expired
         http_response_code(401);
-        echo json_encode(["status" => "error", "message" => "جلسة الدخول انتهت، سجل دخول تاني"]);
+        echo json_encode(["status" => "error", "message" => "Session expired, please log in again"]);
         exit;
     }
 }

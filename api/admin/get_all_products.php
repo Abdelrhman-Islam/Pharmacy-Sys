@@ -2,7 +2,8 @@
 require_once '../../cors.php'; 
 require_once '../../middleware/admin_middleware.php';
 require_once __DIR__ . '/../../config/db.php'; 
-confirmAdmin($connection); // لازم نتأكد إنه أدمن
+
+confirmAdmin($connection); // Verify admin access
 
 $sql = "SELECT * FROM products ORDER BY created_at DESC";
 $result = $connection->query($sql);

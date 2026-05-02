@@ -6,16 +6,16 @@ $connection->begin_transaction();
 
 try {
     $data = json_decode(file_get_contents("php://input"), true);
-    $user_id = $user['id']; // من الميدل وير
+    $user_id = $user['id']; // From middleware
     
-    // 1. حفظ الطلب مع بيانات العنوان
+    // 1. Save order details
     $stmt = $connection->prepare("INSERT INTO orders (user_id, total_amount, address, city, phone, notes) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("idssss", $user_id, $data['total'], $data['address'], $data['city'], $data['phone'], $data['notes']);
     $stmt->execute();
     $order_id = $connection->insert_id;
 
-    // 2. ترحيل المنتجات من الكارت (نفس الكود اللي فات)
-    // ... [كود الـ Loop بتاع الـ Order Items والـ Stock Update] ...
+    // 2. Migrate cart items
+    // ... [Order items & stock update] ...
 
     $connection->commit();
     echo json_encode(["status" => "success", "order_id" => $order_id]);

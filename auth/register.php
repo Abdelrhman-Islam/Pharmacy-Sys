@@ -6,28 +6,23 @@ header("Content-Type: application/json");
 
 require_once '../config/db.php'; 
 
-// لو الطلب OPTIONS (بسبب الـ CORS) بنقفل هنا
+// Handle CORS preflight
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// استقبال الـ JSON من React
 $input = file_get_contents("php://input");
 $data = json_decode($input, true);
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
     $email = $data['email'] ?? '';
 
-    // تشيك لو الإيميل موجود
+    // Check if email exists
     $stmt = $connection->prepare("SELECT id FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     
     if ($stmt->get_result()->num_rows > 0) {
-        // بنبعت الرد بشكل احترافي يحدد فين المشكلة بالظبط
         echo json_encode([
             "status" => "error",
             "errors" => [
@@ -36,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         exit;
     }
+
     $name = $data['name'] ?? '';
     $email = $data['email'] ?? '';
     $password = password_hash($data['password'], PASSWORD_DEFAULT);

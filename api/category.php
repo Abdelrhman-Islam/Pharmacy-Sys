@@ -1,19 +1,10 @@
 <?php
 require_once '../cors.php'; 
 
-
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 require_once '../config/db.php';
-
-if (!isset($pdo)) {
-    echo json_encode([
-        "status" => "error", 
-        "message" => "Database connection variable (\$pdo) is not defined. Check your db_connection.php file."
-    ]);
-    exit;
-}
 
 try {
     $stmt = $pdo->query("SELECT * FROM categories ORDER BY name ASC");
@@ -26,4 +17,3 @@ try {
 } catch (PDOException $e) {
     echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 }
-

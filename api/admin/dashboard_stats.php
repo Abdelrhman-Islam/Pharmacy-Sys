@@ -6,18 +6,19 @@ require_once '../../cors.php';
 require_once __DIR__ . '/../../middleware/admin_middleware.php';
 require_once __DIR__ . '/../../config/db.php'; 
 
-confirmAdmin($connection); // الحماية أولاً
+confirmAdmin($connection); // Authorize admin
 
 $stats = [];
 
-// 1. إجمالي المنتجات
+// Total products
 $res = $connection->query("SELECT COUNT(*) as total FROM products");
 $stats['total_products'] = $res->fetch_assoc()['total'];
 
-// 2. إجمالي المستخدمين
+// Total users
 $res = $connection->query("SELECT COUNT(*) as total FROM users WHERE type = 'user'");
 $stats['total_users'] = $res->fetch_assoc()['total'];
 
+// Low stock products
 $res = $connection->query("SELECT COUNT(*) as total FROM products WHERE qty < 10");
 $stats['low_stock'] = $res->fetch_assoc()['total'];
 

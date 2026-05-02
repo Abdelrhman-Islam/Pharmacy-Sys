@@ -1,16 +1,16 @@
 <?php
 require_once '../cors.php'; 
 
-
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 require_once '../config/db.php'; 
 
-// استقبال التصنيف لو مبعوت من الـ Sidebar
+// Check for category parameter
 $cat = isset($_GET['category']) ? $_GET['category'] : null;
 
 try {
+    // Filter products by category if provided
     if ($cat) {
         $sql = "SELECT * FROM products WHERE category_id = :cat ORDER BY id DESC";
         $stmt = $pdo->prepare($sql);
@@ -32,5 +32,3 @@ try {
     http_response_code(500);
     echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 }
-
-

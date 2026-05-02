@@ -5,7 +5,7 @@ $password = "";
 $db_name = "pharmacy";
 
 try {
-    // 1. الاتصال باستخدام mysqli (عشان الـ Middleware اللي كتبناه شغال بيه)
+    // 1. Connect using mysqli (Required for existing middleware)
     $connection = new mysqli($host, $user, $password, $db_name);
     
     if ($connection->connect_error) {
@@ -13,15 +13,15 @@ try {
     }
     $connection->set_charset("utf8mb4");
 
-    // 2. الاتصال باستخدام PDO (لو حبيت تستخدمه في عمليات الـ INSERT المعقدة)
+    // 2. Connect using PDO (For complex database operations)
     $pdo = new PDO("mysql:host=$host;dbname=$db_name;charset=utf8mb4", $user, $password);
     
-    // ضبط الـ PDO عشان يطلع Errors واضحة بدل ما يسكت
+    // Set PDO error mode to exceptions
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 } catch (Exception $e) {
-    // لو حصل مشكلة في السيرفر يطلع رد JSON عشان الـ React ميهنجش
+    // Handle connection errors as JSON
     header('Content-Type: application/json');
     http_response_code(500);
     echo json_encode(["status" => "error", "message" => "Database Error: " . $e->getMessage()]);

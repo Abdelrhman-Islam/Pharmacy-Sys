@@ -1,9 +1,10 @@
 <?php
-// ملف لإعادة استخدام كود التحقق من التوكين
+// Token authentication helper
 function getAuthenticatedUserId($pdo) {
     $headers = getallheaders();
     $authHeader = $headers['Authorization'] ?? '';
 
+    // Validate Bearer token format
     if (empty($authHeader) || !preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
         http_response_code(401);
         echo json_encode(['error' => 'Unauthorized: No token provided']);
@@ -15,6 +16,7 @@ function getAuthenticatedUserId($pdo) {
     $stmt->execute([$tokenValue]);
     $tokenData = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    // Validate token
     if (!$tokenData) {
         http_response_code(401);
         echo json_encode(['error' => 'Invalid or expired token']);

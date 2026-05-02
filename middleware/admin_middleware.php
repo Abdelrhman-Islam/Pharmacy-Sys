@@ -1,26 +1,24 @@
 <?php
-// منع الوصول المباشر للملف (لأمان أكتر)
+// Prevent direct access
 if (basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME'])) {
     exit('No direct access allowed');
 }
 
 function confirmAdmin($connection) {
-    // 1. جلب الـ headers وتوحيدها
+    // Get and normalize headers
     $headers = array_change_key_case(getallheaders(), CASE_LOWER);
     $authHeader = $headers['authorization'] ?? '';
 
     if (empty($authHeader)) {
         http_response_code(401);
-        echo json_encode(["status" => "error", "message" => "فين التوكن يا هندسة؟"]);
+        echo json_encode(["status" => "error", "message" => "Token required"]);
         exit;
     }
 
-    // 2. تنظيف التوكن (شيل كلمة Bearer والمسافة اللي بعدها)
-    // بنستخدم regex عشان نضمن إننا بنشيلها صح مهما كان شكل المسافات
+    // Extract token
     $token = preg_replace('/^Bearer\s+/i', '', $authHeader);
 
-    // 3. الكويري عشان نتأكد من التوكن وصلاحية الأدمن
-    // بنعمل JOIN عشان نتأكد إن التوكن سليم واليوزر نوعه admin في خطوة واحدة
+    // Validate token and admin status
     $sql = "SELECT users.id, users.name, users.email 
             FROM tokens 
             JOIN users ON tokens.user_id = users.id 
@@ -41,13 +39,13 @@ function confirmAdmin($connection) {
     $result = $stmt->get_result();
     $admin = $result->fetch_assoc();
 
-    // 4. لو مالقاش أدمن بالتوكن ده أو التوكن منتهي
+    // Check if admin is valid
     if (!$admin) {
         http_response_code(403);
-        echo json_encode(["status" => "error", "message" => "أنت مش أدمن أو الجلسة انتهت!"]);
+        echo json_encode(["status" => "error", "message" => "Unauthorized or session expired"]);
         exit;
     }
 
-    // رجع بيانات الأدمن عشان لو احتجت تستخدمها في الـ API (زي الـ ID مثلاً)
+    // Return admin data
     return $admin;
 }

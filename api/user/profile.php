@@ -3,7 +3,8 @@ require_once '../../cors.php';
 require_once __DIR__ . '/../../middleware/admin_middleware.php';
 require_once __DIR__ . '/../../config/db.php'; 
 
-$user = confirmUser($connection); // دالة بتجيب بيانات الـ User من التوكن
+// Get user data from token
+$user = confirmUser($connection);
 $user_id = $user['id'];
 
 $stmt = $connection->prepare("SELECT name, phone, address, city FROM users WHERE id = ?");

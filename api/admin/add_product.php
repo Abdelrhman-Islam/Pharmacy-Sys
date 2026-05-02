@@ -11,17 +11,17 @@ require_once __DIR__ . '/../../middleware/admin_middleware.php';
 
 confirmAdmin($connection); 
 
-// التعديل الجوهري: استلام الداتا من $_POST بدل JSON
+// Retrieve input data
 $name = $_POST['name'] ?? null;
 $category_id = $_POST['category_id'] ?? null;
 $price = $_POST['price'] ?? null;
 $qty = $_POST['qty'] ?? null;
 $description = $_POST['description'] ?? '';
 
-// التعامل مع الصورة
+// Handle image upload
 $pic_name = '';
 if (isset($_FILES['pic']) && $_FILES['pic']['error'] === 0) {
-    $upload_dir = '../../uploads/products/'; // اتأكد إن الفولدر ده موجود وواخد صلاحيات
+    $upload_dir = '../../uploads/products/'; 
     if (!is_dir($upload_dir)) {
         mkdir($upload_dir, 0777, true);
     }
@@ -49,13 +49,13 @@ if (!empty($name) && !empty($category_id) && !empty($price) && !empty($qty)) {
             'pic'   => $pic_name 
         ]);
 
-        echo json_encode(["status" => "success", "message" => "تم إضافة المنتج بنجاح"]);
+        echo json_encode(["status" => "success", "message" => "Product added successfully"]);
 
     } catch (PDOException $e) {
         http_response_code(500);
-        echo json_encode(["status" => "error", "message" => "فشل الإضافة: " . $e->getMessage()]);
+        echo json_encode(["status" => "error", "message" => "Failed to add: " . $e->getMessage()]);
     }
 } else {
     http_response_code(400);
-    echo json_encode(["status" => "error", "message" => "بيانات ناقصة"]);
+    echo json_encode(["status" => "error", "message" => "Missing data"]);
 }
