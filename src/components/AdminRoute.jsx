@@ -1,7 +1,7 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
-const AdminRoute = ({ children }) => {
+const AdminRoute = () => {
   // Get user data from localStorage
   const user = JSON.parse(localStorage.getItem('user'));
   const token = localStorage.getItem('token');
@@ -11,8 +11,8 @@ const AdminRoute = ({ children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  // Render children if authorized
-  return children;
+  // Render Outlet instead of children
+  return <Outlet />;
 };
 
 export default AdminRoute;

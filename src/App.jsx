@@ -4,6 +4,7 @@ import { AppProvider } from './context/AppContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Pages
 import Register from './pages/auth/Register';
 import Login from './pages/auth/login'; 
 import Landing from './pages/Landing';
@@ -16,8 +17,11 @@ import MyOrdersPage from './pages/MyOrdersPage';
 import UploadPrescription from './pages/UploadPrescription';
 import CustomersPage from './pages/admin/CustomersPage';
 
-import ProtectedRoute from './components/ProtectedRoute';
+// Guards
 import AdminRoute from './components/AdminRoute';
+import ProtectedRoute from './components/ProtectedRoute';
+
+// Layouts
 import AdminLayout from './layouts/admin/AdminLayout';
 import './layouts/variables.css';
 import './layouts/global.css';
@@ -68,11 +72,12 @@ function App() {
           {/* Admin Routes */}
           
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<AdminDashboard />} />
-
-          <Route path="customers" element={<CustomersPage />} />
-          <Route path='add-product' element={<AddProduct />}/>
-        </Route>
+          <Route element={<AdminRoute />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="clients" element={<CustomersPage />} />
+            <Route path="add-product" element={<AddProduct />} />
+          </Route>
+      </Route>
 
 
 
@@ -81,6 +86,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+
       <ToastContainer 
         position="top-right"
         autoClose={500}
@@ -89,6 +95,7 @@ function App() {
         rtl={true} 
         pauseOnHover
       />
+
     </AppProvider>
   );
 }
