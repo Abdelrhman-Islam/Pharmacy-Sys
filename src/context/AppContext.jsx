@@ -7,7 +7,7 @@ export const AppProvider = ({ children }) => {
   const [lang, setLang] = useState(localStorage.getItem('lang') || 'en');
 
   useEffect(() => {
-    // تحديث الـ Attribute في الـ HTML عشان الـ CSS يشتغل
+    // Update HTML attributes for theme and direction
     document.documentElement.setAttribute('data-theme', theme);
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
@@ -18,7 +18,7 @@ export const AppProvider = ({ children }) => {
 
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
   const toggleLang = () => setLang(prev => prev === 'en' ? 'ar' : 'en');
-
+  
   return (
     <AppContext.Provider value={{ theme, lang, toggleTheme, toggleLang }}>
       {children}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BASE_URL } from '../api/config';
-import { useCart } from '../components/orders/CartContext';
+import { useCart } from '../context/CartContext';
 
 
 const ProductCard = ({ product }) => {

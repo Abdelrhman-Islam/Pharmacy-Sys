@@ -17,7 +17,7 @@ const ManageProducts = () => {
 
     const deleteProduct = (id) => {
         if(window.confirm('هل أنت متأكد من حذف هذا الدواء؟')) {
-            // هنا هننادي على API الحذف (هنعمله الخطوة الجاية)
+            // TODO: Call delete API
             console.log('Deleting product:', id);
         }
     };

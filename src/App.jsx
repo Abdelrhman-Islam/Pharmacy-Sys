@@ -11,6 +11,7 @@ import Products from './pages/Products';
 import AddProduct from './pages/admin/AddProduct';
 import AdminDashboard from './pages/admin/Dashboard';
 import CheckoutPage from './pages/Checkout';
+import CartPage from './pages/Cart';
 
 import AdminRoute from './components/AdminRoute';
 
@@ -34,6 +35,7 @@ function App() {
           
           {/* Private Routes */}
           <Route path='/checkout' element={<CheckoutPage/>}/>
+          <Route path='/cart' element={<CartPage/>}/>
 
           {/* Admin Routes */}
           
@@ -57,10 +59,10 @@ function App() {
       </BrowserRouter>
       <ToastContainer 
         position="top-right"
-        autoClose={3000} // الإشعار يختفي بعد 3 ثواني
-        hideProgressBar={false}
+        autoClose={500}
+        hideProgressBar={true}
         newestOnTop={true}
-        rtl={true} // عشان يدعم العربي
+        rtl={true} 
         pauseOnHover
       />
     </AppProvider>

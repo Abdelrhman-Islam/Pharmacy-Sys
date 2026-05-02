@@ -1,4 +1,4 @@
-/* Container لضمان إن السكشن ميفردش لآخر الشاشة */
+/* Constrain section width */
 .features-container {
   width: 100%;
   background-color: #ffffff;
@@ -14,7 +14,7 @@
 }
 
 .section-title h2 {
-  color: #0f766e; /* لون صيدليتي الأساسي */
+  color: #0f766e; /* Primary brand color */
   font-size: 2.2rem;
   margin-bottom: 10px;
 }
@@ -52,11 +52,11 @@
   margin: 0 auto 20px;
 }
 
-/* --- Promo Banner (التعديل الأهم هنا) --- */
+/* Promo Banner */
 .promo-banner {
-  max-width: 1100px; /* أصغر شوية من الفيتشرز عشان يطلع شيك */
+  max-width: 1100px;
   margin: 60px auto;
-  background: #1e293b; /* اللون الكحلي المودرن */
+  background: #1e293b; /* Modern dark blue */
   padding: 40px 60px;
   border-radius: 25px;
   color: white;
@@ -64,9 +64,9 @@
 
 .promo-content {
   display: flex;
-  justify-content: space-between; /* ده اللي بيحدف الزرار بعيد عن الكلام */
+  justify-content: space-between; /* Space between elements */
   align-items: center;
-  direction: rtl; /* لضمان ترتيب العناصر للعربي */
+  direction: rtl; /* Enforce RTL layout */
 }
 
 .promo-text {
@@ -75,7 +75,7 @@
 
 .promo-text h2 {
   font-size: 2.2rem;
-  color: #fbbf24; /* اللون الأصفر اللي في الصورة */
+  color: #fbbf24; /* Highlight yellow */
   margin-bottom: 10px;
 }
 
@@ -89,14 +89,14 @@
   font-size: 1.1rem;
   cursor: pointer;
   transition: 0.3s;
-  white-space: nowrap; /* عشان الزرار ميتكسر كذا سطر */
+  white-space: nowrap; /* Prevent button wrapping */
 }
 
 .btn-accent:hover {
   transform: scale(1.05);
 }
 
-/* الموبايل */
+/* Mobile responsive */
 @media (max-width: 768px) {
   .promo-content {
     flex-direction: column;

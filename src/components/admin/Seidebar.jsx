@@ -7,7 +7,7 @@ const Sidebar = () => {
 
     return (
         <>
-            {/* زرار الموبايل */}
+            {/* Mobile toggle */}
             <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
                 <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'}`}></i>
             </button>
@@ -30,7 +30,7 @@ const Sidebar = () => {
                         <i className="fa-solid fa-cart-shopping"></i>
                         <span>الطلبات</span>
                     </NavLink>
-                   
+                    
                     <NavLink to="/admin/customers" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
                         <i className="fas fa-users"></i>
                         <span>العملاء</span>

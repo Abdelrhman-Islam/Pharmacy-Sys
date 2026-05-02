@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../layouts/Footer.css';
+
 const Footer = () => {
   return (
     <footer>
@@ -32,6 +33,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      
       <div style={{ textAlign: 'center', marginTop: '40px', opacity: '0.5', fontSize: '0.8rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>
         &copy; {new Date().getFullYear()} All Rights Reserved
       </div>

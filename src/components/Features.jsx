@@ -1,10 +1,10 @@
 import React from 'react';
-import '../layouts/Features.css'; // لو حابب تفصل الـ CSS بتاعه برضه
+import '../layouts/Features.css'; // Optional CSS import
 
 const Features = () => {
   return (
     <div className="features-wrapper">
-      {/* Features Section */}
+      {/* Features section */}
       <section className="features-section">
         <div className="section-title">
           <h2>لماذا تختار صيدليتي؟</h2>
@@ -32,7 +32,7 @@ const Features = () => {
         </div>
       </section>
 
-      {/* Promo Banner */}
+      {/* Promo banner */}
       <section className="promo-banner">
         <div className="promo-content">
           <div className="promo-text">

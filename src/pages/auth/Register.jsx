@@ -15,12 +15,11 @@ const Register = () => {
     name: '', email: '', password: '', phone: '', age: '', address: ''
   });
 
-  // تخزين الأخطاء لكل خانة
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // مسح الخطأ بمجرد ما المستخدم يبدأ يكتب تاني
+    
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: '' });
     }
@@ -30,31 +29,30 @@ const Register = () => {
     e.preventDefault();
     setErrors({}); 
     const password = formData.password;
-  let passwordErrors = "";
+    let passwordErrors = "";
 
-  if (password.length < 8) {
-    passwordErrors = isRtl ? "الباسورد لازم يكون 8 حروف على الأقل" : "Password must be at least 8 characters";
-  } else if (!/[A-Z]/.test(password)) {
-    passwordErrors = isRtl ? "لازم حرف كبير واحد على الأقل (A-Z)" : "Must contain at least one uppercase letter";
-  } else if (!/[0-9]/.test(password)) {
-    passwordErrors = isRtl ? "لازم رقم واحد على الأقل" : "Must contain at least one number";
-  }
+    if (password.length < 8) {
+      passwordErrors = isRtl ? "الباسورد لازم يكون 8 حروف على الأقل" : "Password must be at least 8 characters";
+    } else if (!/[A-Z]/.test(password)) {
+      passwordErrors = isRtl ? "لازم حرف كبير واحد على الأقل (A-Z)" : "Must contain at least one uppercase letter";
+    } else if (!/[0-9]/.test(password)) {
+      passwordErrors = isRtl ? "لازم رقم واحد على الأقل" : "Must contain at least one number";
+    }
 
-  if (passwordErrors) {
-    setErrors({ password: passwordErrors });
-    return; 
-  }
+    if (passwordErrors) {
+      setErrors({ password: passwordErrors });
+      return; 
+    }
+
     try {
       const result = await authService.register(formData);
       
       if (result.status === 'success') {
         navigate('/login');
       } else {
-        // لو الـ PHP باعت أخطاء مفصلة (Object)
         if (result.errors) {
           setErrors(result.errors);
         } else {
-          // لو باعت رسالة واحدة (String) بنهندلها يدوي
           if (result.message.includes('الإيميل') || result.message.toLowerCase().includes('email')) {
             setErrors({ email: result.message });
           } else {
@@ -67,8 +65,6 @@ const Register = () => {
     }
   };
 
-  
-
   return (
     <div className="auth-container" dir={isRtl ? 'rtl' : 'ltr'}>
       <div className="auth-card">
@@ -79,11 +75,9 @@ const Register = () => {
           </p>
         </div>
 
-        {/* خطأ عام لو السيرفر وقع مثلاً */}
         {errors.general && <div className="general-error-box">{errors.general}</div>}
 
         <form onSubmit={handleSubmit}>
-          {/* حقل الاسم */}
           <div className="form-group">
             <label className="form-label">{content.name}</label>
             <input 
@@ -93,7 +87,6 @@ const Register = () => {
             {errors.name && <span className="field-error-msg">{errors.name}</span>}
           </div>
 
-          {/* حقل الإيميل */}
           <div className="form-group">
             <label className="form-label">{content.email}</label>
             <input 
@@ -103,7 +96,6 @@ const Register = () => {
             {errors.email && <span className="field-error-msg">{errors.email}</span>}
           </div>
 
-          {/* حقل الباسورد */}
           <div className="form-group">
             <label className="form-label">{content.pass}</label>
             <input 

@@ -1,3 +1,4 @@
+/* Base styles */
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -26,6 +27,20 @@ body {
   border: none;
 }
 
-.btn-primary { background: var(--white); color: var(--primary-color); }
-.btn-outline { border: 2px solid var(--white); color: var(--white); background: transparent; }
-.btn-accent { background: var(--accent-color); color: #1e293b; border-radius: 12px; font-weight: 800; }
+.btn-primary {
+  background: var(--white);
+  color: var(--primary-color);
+}
+
+.btn-outline {
+  border: 2px solid var(--white);
+  color: var(--white);
+  background: transparent;
+}
+
+.btn-accent {
+  background: var(--accent-color);
+  color: #1e293b;
+  border-radius: 12px;
+  font-weight: 800;
+}

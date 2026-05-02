@@ -1,5 +1,4 @@
-
-/* Table */
+/* Table styles */
 .admin-table {
     width: 100%;
     border-collapse: collapse;
@@ -24,10 +23,19 @@
 
 .btn-edit {
     background: var(--secondary-color);
-    color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; margin-left: 10px;
+    color: white; 
+    border: none; 
+    padding: 5px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-left: 10px;
 }
 
 .btn-delete {
     background: var(--warning-color);
-    color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;
+    color: white; 
+    border: none; 
+    padding: 5px 15px; 
+    border-radius: 5px; 
+    cursor: pointer;
 }

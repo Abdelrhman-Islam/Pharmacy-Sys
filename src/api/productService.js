@@ -1,7 +1,7 @@
 import { BASE_URL } from './config';
 
 export const productService = {
-  // سحب كل المنتجات أو فلترتها بالتصنيف
+  // Fetch products (optional category filter)
   getProducts: async (categoryId = null) => {
     const url = categoryId 
       ? `${BASE_URL}api/products.php?category=${categoryId}`
@@ -10,7 +10,7 @@ export const productService = {
     return response.json();
   },
 
-  // سحب قائمة التصنيفات للـ Sidebar
+  // Fetch categories for sidebar
   getCategories: async () => {
     const response = await fetch(`${BASE_URL}api/category.php`);
     return response.json();

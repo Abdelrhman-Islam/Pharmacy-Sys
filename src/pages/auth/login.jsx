@@ -16,7 +16,6 @@ const Login = () => {
         password: ''
     });
 
-    // حالة الأخطاء لكل خانة
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
@@ -24,7 +23,7 @@ const Login = () => {
             ...formData,
             [e.target.name]: e.target.value
         });
-        // مسح الخطأ بمجرد ما المستخدم يبدأ يعدل البيانات
+        
         if (errors[e.target.name]) {
             setErrors({ ...errors, [e.target.name]: '' });
         }
@@ -32,7 +31,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors({}); // تصفير الأخطاء عند محاولة الدخول
+        setErrors({});
 
         try {
             const result = await authService.login(formData);
@@ -41,7 +40,6 @@ const Login = () => {
                 localStorage.setItem('token', result.token);
                 localStorage.setItem('user', JSON.stringify(result.user));
 
-                // تأكد إن الـ type بيتقرأ من المكان الصح (غالباً من جوه الـ user)
                 const userRole = result.user?.type || result.type; 
 
                 if (userRole === 'admin') {
@@ -50,13 +48,11 @@ const Login = () => {
                     navigate('/');
                 }
             } else {
-                // التعامل مع الخطأ القادم من الباك إند
                 const msg = result.message || '';
-                // لو المشكلة في الإيميل أو الباسورد (أو الاثنين مع بعض للأمان)
                 if (msg.includes('email') || msg.includes('البريد') || msg.includes('password') || msg.includes('كلمة')) {
                     setErrors({
                         email: isRtl ? "خطأ في البريد الإلكتروني أو كلمة المرور" : "Invalid email or password",
-                        password: ' ' // مجرد مساحة لتلوين الخانة بالأحمر
+                        password: ' ' 
                     });
                 } else {
                     setErrors({ general: msg });
@@ -77,7 +73,6 @@ const Login = () => {
                     </p>
                 </div>
 
-                {/* عرض خطأ عام لو موجود */}
                 {errors.general && <div className="general-error-box">{errors.general}</div>}
 
                 <form onSubmit={handleSubmit}>

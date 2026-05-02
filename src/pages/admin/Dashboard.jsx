@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sidebar from '../../components/admin/Seidebar'; // تأكد من المسار
+import Sidebar from '../../components/admin/Seidebar'; // Ensure path is correct
 import StatsCard from '../../components/admin/DashboardStats';
 import LatestUsers from '../../components/admin/LatestUsers';
 
@@ -8,15 +8,15 @@ const Dashboard = () => {
 
     return (
         <div className="admin-page-container">
-            {/* زرار الموبايل */}
+            {/* Mobile button */}
             <button className="mobile-menu-btn" onClick={() => setSidebarOpen(true)}>
                 <i className="fas fa-bars"></i>
             </button>
 
-            {/* السايدبار بنبعت له الحالة عشان يفتح ويقفل في الموبايل */}
+            {/* Pass state to handle sidebar toggle on mobile */}
             <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
             
-            {/* الجزء اللي فيه الشغل كله */}
+            {/* Main content area */}
             <main className="admin-main-wrapper">
                 
                 <div className="stats-grid">

@@ -1,12 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useCart } from '../context/CartContext';
 import '../layouts/Navbar.css';
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const { cart } = useCart();
 
   useEffect(() => {
-    // تشيك لو في يوزر متخزن في اللوكال ستورج
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
@@ -20,6 +22,8 @@ const Navbar = () => {
     navigate('/login');
   };
 
+  const totalQuantity = cart.reduce((acc, item) => acc + parseInt(item.quantity || 0), 0);
+
   return (
     <nav className="navbar">
       <Link to="/" className="logo">
@@ -32,8 +36,19 @@ const Navbar = () => {
       </div>
 
       <div className="nav-icons">
-        <Link title="المفضلة" to="/wishlist"><i className="far fa-heart"></i></Link>
         
+        
+        
+        <Link title="المفضلة" to="/wishlist"><i className="far fa-heart"></i></Link>
+        <Link to="/cart" className="relative">
+          <i className="fas fa-shopping-basket"></i>
+          {/* Cart count */}
+          {totalQuantity > 0 && (
+            <span className="cart-badge">{totalQuantity}</span>
+          )}
+        </Link>
+
+
         {user ? (
           <div className="user-nav-group" style={{display: 'flex', gap: '15px', alignItems: 'center'}}>
             <Link to="/profile" style={{fontSize: '0.9rem', fontWeight: 'bold'}}>أهلاً، {user.name}</Link>
@@ -44,11 +59,6 @@ const Navbar = () => {
         ) : (
           <Link title="تسجيل الدخول" to="/login"><i className="far fa-user"></i></Link>
         )}
-
-        <Link to="/cart" className="relative">
-          <i className="fas fa-shopping-basket"></i>
-          <span className="cart-badge">0</span>
-        </Link>
       </div>
     </nav>
   );

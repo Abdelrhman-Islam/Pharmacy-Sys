@@ -36,7 +36,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* هنا ممكن تضيف جدول بآخر المنتجات المضافة أو الطلبات */}
+      {/* Add recent products or orders table here */}
     </div>
   );
 };

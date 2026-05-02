@@ -5,21 +5,21 @@
     --transition: all 0.3s ease;
 }
 
-/* التنسيق العام للجسم */
+/* Base styles */
 body {
     margin: 0;
     padding: 0;
     background-color: var(--light-bg);
-    font-family: 'Cairo', sans-serif; /* يفضل تستخدم خط عربي نضيف */
+    font-family: 'Cairo', sans-serif;
 }
 
-/* الحاوية الأساسية للصفحة */
+/* Page container */
 .admin-page-container {
     display: flex;
     min-height: 100vh;
 }
 
-/* Sidebar Styling - معدل من كودك */
+/* Sidebar styling */
 .sidebar {
     width: var(--sidebar-width);
     background-color: var(--main-teal);
@@ -42,7 +42,7 @@ body {
     gap: 15px;
     padding: 0 15px 40px;
     color: white;
-    direction: rtl; /* عشان اللوجو والاسم يمشوا صح */
+    direction: rtl;
 }
 
 .logo-box {
@@ -117,15 +117,15 @@ body {
     background: rgba(255, 0, 0, 0.1);
 }
 
-/* --- المحتوى الرئيسي (الجزء اللي على الشمال) --- */
+/* Main content area */
 .admin-main-wrapper {
     flex: 1;
-    margin-right: var(--sidebar-width); /* بيزق المحتوى عشان السايدبار Fixed */
+    margin-right: var(--sidebar-width);
     padding: 30px;
     transition: var(--transition);
 }
 
-/* --- Responsive Helpers --- */
+/* Responsive helpers */
 .mobile-menu-btn {
     display: none;
     position: fixed;
@@ -143,7 +143,7 @@ body {
 
 @media (max-width: 992px) {
     .sidebar {
-        right: -100%; /* مخفي */
+        right: -100%;
     }
     
     .sidebar.open {
@@ -152,7 +152,7 @@ body {
     }
     
     .admin-main-wrapper {
-        margin-right: 0; /* المحتوى ياخد العرض كامل في الموبايل */
+        margin-right: 0;
         margin-top: 20px;
     }
     
@@ -169,5 +169,3 @@ body {
         z-index: 999;
     }
 }
-
-

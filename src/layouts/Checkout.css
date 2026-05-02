@@ -1,9 +1,9 @@
-/* CheckoutPage.css */
+/* CheckoutPage styles */
 .checkout-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh; /* عشان يوسطن الفورم في نص الشاشة */
+    min-height: 80vh; /* Center form */
     padding: 20px;
 }
 
@@ -11,17 +11,17 @@
     background: #fff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* ظل خفيف عشان يبان كارت */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Card shadow */
     width: 100%;
     max-width: 450px;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* مسافة بين العناصر */
+    gap: 15px; /* Spacing */
 }
 
 .checkout-form h2 {
     text-align: center;
-    color: #00796b; /* نفس لون الـ branding بتاعك */
+    color: #00796b; /* Brand color */
     margin-bottom: 10px;
 }
 

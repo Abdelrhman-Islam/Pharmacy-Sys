@@ -1,7 +1,7 @@
 import { BASE_URL } from './config';
 
 export const authService = {
-  // Register Function
+  // Register user
   register: async (userData) => {
     const response = await fetch(`${BASE_URL}/auth/register.php`, {
       method: 'POST',
@@ -11,7 +11,7 @@ export const authService = {
     return response.json();
   },
 
-  // Login Function
+  // Authenticate user
   login: async (credentials) => {
     const response = await fetch(`${BASE_URL}/auth/login.php`, {
       method: 'POST',

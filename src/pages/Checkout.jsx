@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { BASE_URL } from '../api/config';
-import { useCart } from '../components/orders/CartContext';
+import { useCart } from '../context/CartContext';
 import { toast } from 'react-toastify';
+import Navbar from '../components/Navbar';
 import '../layouts/Checkout.css';
 
 const CheckoutPage = () => {
@@ -29,7 +30,7 @@ const CheckoutPage = () => {
 
             if (result.status === 'success') {
                 toast.success(`تم الطلب بنجاح! رقم الطلب: ${result.order_id}`);
-                setCart([]); // تصفير السلة بعد نجاح الطلب
+                setCart([]); 
             } else {
                 toast.error(`خطأ في الطلب: ${result.message}`);
             }
@@ -39,25 +40,12 @@ const CheckoutPage = () => {
             setLoading(false);
         }
     };
-
-    //  return (
-    //     <form onSubmit={handleCheckout} className="checkout-form">
-    //         <input name="name" placeholder="الاسم الكامل" onChange={handleChange} required />
-    //         <input name="phone" placeholder="رقم الهاتف" onChange={handleChange} required />
-    //         <input name="address" placeholder="العنوان بالتفصيل" onChange={handleChange} required />
-            
-    //         <select name="city" onChange={handleChange}>
-    //             <option value="القاهرة">القاهرة</option>
-    //             <option value="الجيزة">الجيزة</option>
-    //         </select>
-
-    //         <button type="submit" disabled={loading}>
-    //             {loading ? 'جاري الإرسال...' : `تأكيد الطلب (${totalAmount} ج.م)`}
-    //         </button>
-    //     </form>
-    // );
+    
     return (
-            <div className="checkout-container"> {/* ضفنا حاوية هنا */}
+        <>
+            <Navbar/>
+        
+            <div className="checkout-container"> 
                 <form onSubmit={handleCheckout} className="checkout-form">
                     <h2>إتمام الطلب</h2>
                     <input name="name" placeholder="الاسم الكامل" onChange={handleChange} required />
@@ -74,6 +62,7 @@ const CheckoutPage = () => {
                     </button>
                 </form>
             </div>
+        </>
     );
 };
 

@@ -10,9 +10,10 @@ const LatestUsers = () => {
         const fetchUsers = async () => {
             try {
                 const res = await adminService.getLatestUsers();
-                setUsers(res.data); // بفرض إن الداتا راجعة في array
+                // Assume data is an array
+                setUsers(res.data);
             } catch (err) {
-                console.error("خطأ في جلب العملاء", err);
+                console.error("Error fetching users", err);
             } finally {
                 setLoading(false);
             }
@@ -42,7 +43,6 @@ const LatestUsers = () => {
                     <tbody>
                         {users.map(user => (
                             <tr key={user.id}>
-                                {/* ... باقي الأعمده ... */}
                                 <td>{user.name}</td>
                                 <td>
                                     {user.email}

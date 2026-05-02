@@ -1,6 +1,18 @@
-/* --- Footer الأساسي --- */
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Footer layout */
 footer { 
-  background: #0f5c56; /* لون الصيدلية الثابت */
+  background: #0f5c56;
   color: #ccfbf1; 
   padding: 4rem 5% 2rem; 
   direction: rtl;
@@ -8,7 +20,6 @@ footer {
 
 .footer-grid { 
   display: grid; 
-  /* auto-fit بتخلي العناصر تنزل تحت بعضها أوتوماتيك لما الشاشة تضيق */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
   gap: 40px; 
   max-width: 1200px;
@@ -71,82 +82,41 @@ footer {
   font-size: 0.9rem;
 }
 
-/* --- تظبيط الفوتر للموبايل (Mobile Responsive) --- */
-@media (max-width: 768px) {
-  footer {
-    padding: 40px 20px !important; /* فك الزنقة من الجوانب */
-    text-align: center; /* سنترة المحتوى للموبايل */
-  }
-
-  .footer-grid {
-    /* بنلغي الـ Grid ونحولها Flex عشان نضمن إنهم تحت بعض تماماً */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .footer-col {
-    width: 100%;
-    max-width: 100%; /* بيضمن إن النص يفرد لآخر الشاشة */
-  }
-
-  .footer-col p {
-    font-size: 0.95rem;
-  }
-
-  .social-icons {
-    justify-content: center; /* سنترة أيقونات السوشيال ميديا */
-  }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden; /* بيمنع السكرول بالعرض */
-}
-
+/* Responsive: Tablet (600px - 992px) */
 @media (max-width: 992px) and (min-width: 600px) {
   .footer-grid {
     display: grid !important;
-    /* هنا بنقسم العرض لعمودين متساويين */
     grid-template-columns: 1fr 1fr; 
     gap: 30px;
-    text-align: right; /* المحاذاة لليمين بدل السنترة عشان يبقوا جنب بعض صح */
+    text-align: right;
   }
 
-  /* قسم "صيدليتي" نخليه ياخد الصف الأول كله بالعرض */
   .footer-col:first-child {
     grid-column: span 2; 
     margin-bottom: 20px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 20px;
   }
-
-  /* نضمن إن "روابط سريعة" و "تواصل معنا" كل واحد في عمود */
-  .footer-col {
-    width: 100%;
-  }
-
-  .social-icons {
-    justify-content: flex-start; /* الأيقونات تبدأ من اليمين تحت تواصل معنا */
-  }
 }
 
-/* الموبايل الصغير جداً يفضلوا تحت بعض */
-@media (max-width: 600px) {
+/* Responsive: Mobile (< 768px) */
+@media (max-width: 768px) {
+  footer {
+    padding: 40px 20px !important;
+    text-align: center;
+  }
+
   .footer-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    gap: 30px;
   }
-  
+
+  .footer-col {
+    width: 100%;
+  }
+
   .social-icons {
     justify-content: center;
   }

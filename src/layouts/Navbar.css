@@ -1,54 +1,69 @@
-
-/* --- Navbar --- */
+/* Navbar */
 .navbar {
-  background-color: var(--white);
-  padding: 1rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  direction: rtl;
+    background-color: var(--white);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    direction: rtl;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
 }
 
 .search-box {
-  display: flex;
-  align-items: center;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  border-radius: 25px;
-  padding: 5px 15px;
-  width: 40%;
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 25px;
+    padding: 5px 15px;
+    width: 40%;
 }
 
 .search-box input {
-  border: none;
-  background: transparent;
-  width: 100%;
-  outline: none;
-  padding: 8px;
+    border: none;
+    background: transparent;
+    width: 100%;
+    outline: none;
+    padding: 8px;
 }
 
 .nav-icons {
-  display: flex;
-  gap: 20px;
-  align-items: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
 .nav-icons a {
-  color: #64748b;
-  font-size: 1.2rem;
-  text-decoration: none;
+    color: #64748b;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-icons a:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive adjustment for mobile screens */
+@media (max-width: 768px) {
+    .search-box {
+        display: none; /* Hide search box on mobile, or resize it */
+    }
+    
+    .navbar {
+        padding: 1rem 3%;
+    }
 }
