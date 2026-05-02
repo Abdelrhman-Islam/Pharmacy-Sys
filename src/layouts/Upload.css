@@ -1,0 +1,51 @@
+.upload-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    background: #f8f9fa; /* لون خلفية هادي */
+    min-height: 80vh;
+}
+
+.upload-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.drop-zone {
+    border: 2px dashed #00bfa5; /* اللون الأخضر بتاع البراند */
+    border-radius: 12px;
+    padding: 40px 20px;
+    margin: 20px 0;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.drop-zone:hover {
+    background: #f0fdfb;
+}
+
+.preview-container img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: #00bfa5; /* لون البراند */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-btn:disabled {
+    background: #ccc;
+}

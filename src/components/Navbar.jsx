@@ -47,7 +47,8 @@ const Navbar = () => {
             <span className="cart-badge">{totalQuantity}</span>
           )}
         </Link>
-
+        
+        <Link to="/my-orders">طلباتي</Link>
 
         {user ? (
           <div className="user-nav-group" style={{display: 'flex', gap: '15px', alignItems: 'center'}}>

@@ -12,7 +12,10 @@ import AddProduct from './pages/admin/AddProduct';
 import AdminDashboard from './pages/admin/Dashboard';
 import CheckoutPage from './pages/Checkout';
 import CartPage from './pages/Cart';
+import MyOrdersPage from './pages/MyOrdersPage';
+import UploadPrescription from './pages/UploadPrescription';
 
+import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
 
 import './layouts/variables.css';
@@ -33,9 +36,33 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           
+
           {/* Private Routes */}
-          <Route path='/checkout' element={<CheckoutPage/>}/>
-          <Route path='/cart' element={<CartPage/>}/>
+
+          <Route path="/checkout" element={
+              <ProtectedRoute>
+                  <CheckoutPage />
+              </ProtectedRoute>
+          } />
+
+          <Route path="/my-orders" element={
+              <ProtectedRoute>
+                  <MyOrdersPage />
+              </ProtectedRoute>
+          } />
+
+          <Route path="/cart" element={
+            <ProtectedRoute>
+                <CartPage />
+              </ProtectedRoute>
+          } />
+
+          <Route path="/prescriptions" element={
+            <ProtectedRoute>
+                <UploadPrescription />
+              </ProtectedRoute>
+          } />
+
 
           {/* Admin Routes */}
           
