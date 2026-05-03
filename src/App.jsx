@@ -9,12 +9,13 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/login'; 
 import Landing from './pages/Landing';
 import Products from './pages/Products';
-import AddProduct from './pages/admin/AddProductPage';
-import AdminDashboard from './pages/admin/Dashboard';
 import CheckoutPage from './pages/Checkout';
 import CartPage from './pages/Cart';
 import MyOrdersPage from './pages/MyOrdersPage';
 import UploadPrescription from './pages/UploadPrescription';
+
+import AddProduct from './pages/admin/AddProductPage';
+import AdminDashboard from './pages/admin/Dashboard';
 import CustomersPage from './pages/admin/CustomersPage';
 import OrdersPage from './pages/admin/OrdersPage';
 

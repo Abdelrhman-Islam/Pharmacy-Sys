@@ -44,3 +44,13 @@ export const updateOrderStatus = async (orderId, status) => {
 
     return data;
 };
+
+export const fetchLatestOrders = async () => {
+    const response = await fetch(`${BASE_URL}api/admin/orders/latest_orders.php`, {
+        headers: {
+            'Authorization': `${localStorage.getItem('token')}`
+        }
+    });
+
+    return await response.json();
+};

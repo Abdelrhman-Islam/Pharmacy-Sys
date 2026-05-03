@@ -1,0 +1,83 @@
+.latest-orders {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.section-header a {
+    color: #6366f1;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.latest-orders table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.latest-orders td, .latest-orders th {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+
+/* ID */
+.order-id {
+    font-weight: 600;
+    color: #444;
+}
+
+/* اسم العميل */
+.customer-name {
+    font-weight: 500;
+}
+
+/* السعر */
+.price {
+    font-weight: bold;
+    color: #111;
+}
+
+/* badge عام */
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* الحالات */
+.badge.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.badge.transit {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.badge.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* hover للصف */
+.latest-orders tr:hover {
+    background: #f9fafb;
+    transition: 0.2s;
+}
