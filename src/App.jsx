@@ -12,12 +12,13 @@ import Products from './pages/Products';
 import CheckoutPage from './pages/Checkout';
 import CartPage from './pages/Cart';
 import MyOrdersPage from './pages/MyOrdersPage';
-import UploadPrescription from './pages/UploadPrescription';
 
 import AddProduct from './pages/admin/AddProductPage';
 import AdminDashboard from './pages/admin/Dashboard';
 import CustomersPage from './pages/admin/CustomersPage';
 import OrdersPage from './pages/admin/OrdersPage';
+import EditProduct from './pages/admin/EditProduct';
+import AdminProductsPage from './pages/admin/ProductsPage';
 
 // Guards
 import AdminRoute from './components/AdminRoute';
@@ -64,11 +65,7 @@ function App() {
               </ProtectedRoute>
           } />
 
-          <Route path="/prescriptions" element={
-            <ProtectedRoute>
-                <UploadPrescription />
-              </ProtectedRoute>
-          } />
+
 
 
           {/* Admin Routes */}
@@ -79,6 +76,8 @@ function App() {
             <Route path="clients" element={<CustomersPage />} />
             <Route path="add-product" element={<AddProduct />} />
             <Route path="orders" element={<OrdersPage />} />
+            <Route path="edit-product" element={<EditProduct />} />
+            <Route path="products" element={<AdminProductsPage />} />
           </Route>
       </Route>
 

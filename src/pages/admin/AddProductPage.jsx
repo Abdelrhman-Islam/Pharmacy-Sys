@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from '../../components/admin/Seidebar';
-import '../../layouts/Forms.css';
 import { BASE_URL } from '../../api/config';
 import { toast } from 'react-toastify';
+import { useNavigate  } from "react-router-dom";
+import Sidebar from '../../components/admin/Seidebar';
+import '../../layouts/Forms.css';
+
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -13,7 +15,7 @@ const AddProduct = () => {
     description: '',
     pic: null
   });
-
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -54,7 +56,7 @@ const AddProduct = () => {
     formData.append('pic', product.pic);
 
     try {
-      const response = await fetch(`${BASE_URL}api/admin/add_product.php`, {
+      const response = await fetch(`${BASE_URL}api/admin/products/add_product.php`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -66,6 +68,9 @@ const AddProduct = () => {
       if (result.status === 'success') {
         toast.success('تمت إضافة المنتج بنجاح!');
         setProduct({ name: '', category_id: '', price: '', qty: '', description: '', pic: null });
+        setTimeout(() => {
+          navigate("/admin/products");
+        }, 500);
       } else {
         toast.error(result.message || 'حدث خطأ أثناء الإضافة');
       }

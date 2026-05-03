@@ -1,0 +1,325 @@
+/* =========================
+   PAGE
+========================= */
+.orders-page {
+    padding: 20px;
+    background: #f8fafc;
+    min-height: 100vh;
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* =========================
+   HEADER
+========================= */
+.orders-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.orders-header p {
+    color: #777;
+    margin-top: 5px;
+}
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+.orders-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card span {
+    color: #888;
+    font-size: 14px;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 22px;
+}
+
+/* Card Colors */
+.card.total { border-right: 4px solid #6366f1; }
+.card.completed { border-right: 4px solid #10b981; }
+.card.transit { border-right: 4px solid #3b82f6; }
+.card.pending { border-right: 4px solid #f59e0b; }
+.card.cancelled { border-right: 4px solid #ef4444; }
+
+/* =========================
+   TABLE
+========================= */
+.orders-table {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.orders-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th {
+    background: #f1f5f9;
+    padding: 12px;
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+}
+
+.orders-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.orders-table tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+.status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.status.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status.transit {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* =========================
+   DROPDOWN
+========================= */
+.status-dropdown {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: 6px 30px 6px 12px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.status-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.status-dropdown-wrapper::after {
+    content: "▾";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 12px;
+    color: #555;
+}
+
+.status-dropdown:hover {
+    filter: brightness(0.95);
+}
+
+.status-dropdown:focus {
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+}
+
+.status-dropdown.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-dropdown.transit {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-dropdown.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-dropdown.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-dropdown:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* =========================
+   LOADING
+========================= */
+.loading {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 18px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .orders-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .orders-header h2 {
+        font-size: 22px;
+    }
+}
+
+/* Small tablets */
+@media (max-width: 768px) {
+    .orders-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .orders-page {
+        padding: 15px;
+    }
+
+    .card h3 {
+        font-size: 18px;
+    }
+
+    .orders-table table {
+        font-size: 14px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .orders-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .orders-header h2 {
+        font-size: 20px;
+    }
+
+    .orders-header p {
+        font-size: 13px;
+    }
+
+    .orders-table {
+        overflow-x: auto;
+    }
+
+    .orders-table table {
+        min-width: 600px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .card h3 {
+        font-size: 16px;
+    }
+
+    .card span {
+        font-size: 12px;
+    }
+
+    .status-dropdown {
+        font-size: 11px;
+        padding: 5px 25px 5px 10px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 400px) {
+    .orders-header h2 {
+        font-size: 18px;
+    }
+
+    .card h3 {
+        font-size: 15px;
+    }
+
+    .orders-table table {
+        min-width: 500px;
+    }
+}
+
+.orders-table {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* wrapper للـ scroll */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* table نفسه */
+.orders-table table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+/* mobile fix */
+@media (max-width: 576px) {
+    .orders-table table {
+        min-width: 650px;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+}

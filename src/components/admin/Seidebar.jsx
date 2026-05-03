@@ -10,7 +10,6 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         { path: '/admin/clients', label: 'العملاء', icon: 'fas fa-users' },
         { path: '/admin/products', label: 'المنتجات', icon: 'fas fa-box' },
         { path: '/admin/add-product', label: 'إضافة منتجات', icon: 'fas fa-plus' },
-        { path: '/admin/prescription', label: 'روشتة', icon: 'fas fa-file-prescription' },
     ];
     return (
         <>

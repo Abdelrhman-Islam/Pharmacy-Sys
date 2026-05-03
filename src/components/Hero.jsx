@@ -11,9 +11,6 @@ const Hero = () => {
             
             {/* CTA buttons */}
             <div className="hero-buttons">
-                <Link to="/prescriptions" className="btn btn-primary">
-                    ارفع الروشتة <i className="fas fa-file-upload"></i>
-                </Link>
                 <Link to="/products" className="btn btn-outline">تصفح المنتجات</Link>
             </div>
         </div>

@@ -49,7 +49,6 @@ const MyOrdersPage = () => {
                     </div>
                 }
             </div>
-            <Footer/>
         </>
     );
 };

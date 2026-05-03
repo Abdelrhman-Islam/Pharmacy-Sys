@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchOrders, updateOrderStatus } from '../../api/ordersService';
 import { toast } from 'react-toastify';
-import '../../layouts/Orders.css';
+import '../../layouts/admin/Orders.css';
 
 const OrdersPage = () => {
     const [data, setData] = useState({ summary: {}, orders: [] });
