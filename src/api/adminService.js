@@ -9,7 +9,7 @@ export const adminService = {
                 headers: {
                     'Content-Type': 'application/json',
                     // Auth token for admin verification
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Authorization': `${localStorage.getItem('token')}`
                 }
             });
 

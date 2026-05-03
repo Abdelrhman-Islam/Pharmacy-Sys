@@ -9,13 +9,14 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/login'; 
 import Landing from './pages/Landing';
 import Products from './pages/Products';
-import AddProduct from './pages/admin/AddProduct';
+import AddProduct from './pages/admin/AddProductPage';
 import AdminDashboard from './pages/admin/Dashboard';
 import CheckoutPage from './pages/Checkout';
 import CartPage from './pages/Cart';
 import MyOrdersPage from './pages/MyOrdersPage';
 import UploadPrescription from './pages/UploadPrescription';
 import CustomersPage from './pages/admin/CustomersPage';
+import OrdersPage from './pages/admin/OrdersPage';
 
 // Guards
 import AdminRoute from './components/AdminRoute';
@@ -76,6 +77,7 @@ function App() {
             <Route index element={<AdminDashboard />} />
             <Route path="clients" element={<CustomersPage />} />
             <Route path="add-product" element={<AddProduct />} />
+            <Route path="orders" element={<OrdersPage />} />
           </Route>
       </Route>
 
