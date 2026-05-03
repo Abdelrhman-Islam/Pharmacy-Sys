@@ -6,8 +6,8 @@ header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { exit; }
 
-require_once __DIR__ . '/../../config/db.php'; 
-require_once __DIR__ . '/../../middleware/admin_middleware.php';
+require_once __DIR__ . '/../../../config/db.php'; 
+require_once __DIR__ . '/../../../middleware/admin_middleware.php';
 
 confirmAdmin($connection); 
 
@@ -21,7 +21,7 @@ $description = $_POST['description'] ?? '';
 // Handle image upload
 $pic_name = '';
 if (isset($_FILES['pic']) && $_FILES['pic']['error'] === 0) {
-    $upload_dir = '../../uploads/products/'; 
+    $upload_dir = __DIR__ . '/../../../uploads/products/'; 
     if (!is_dir($upload_dir)) {
         mkdir($upload_dir, 0777, true);
     }
