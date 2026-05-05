@@ -21,7 +21,7 @@ const AdminDashboard = () => {
       
       <div className="stats-grid">
         <div className="stat-card">
-          <h3>إجمالي الأدوية</h3>
+          <h3>إجمالي المنتجات</h3>
           <p className="number">{stats.total_products}</p>
         </div>
 
